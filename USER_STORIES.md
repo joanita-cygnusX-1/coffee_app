@@ -51,7 +51,7 @@ As the project grows or becomes dynamic, the user stories will be managed here.
 - Items can be edited or removed
 - Cart totals update dynamically
 
----
+--- 
 
 ## Story 5: Checkout
 **As a** user  
