@@ -1,83 +1,85 @@
-☕ Coffee App
+# ☕ Coffee App
 
-A simple Python project designed to simulate a basic restaurant/coffee-ordering system. The goal of this project is to help me (the developer) build foundational backend skills using Python while following good software development practices such as pseudocode, user stories, documentation, and version control.
 
-📌 Project Purpose
 
-This project helps me learn how to think like a developer—breaking down a full application into smaller tasks using:
+A simple Python CLI coffee-ordering app used to learn backend design patterns, modular code organization, testing, and CI.
 
-Pseudocode
+---
 
-CRUD thinking
+## Project Overview
+This project demonstrates:
+- Modular design (`menu.py`, `cart.py`, `coffee_app.py`)
+- Clear developer artifacts (`README.md`, `DESIGN.md`, `USER_STORIES.md`, `CHANGELOG.md`)
+- A small JSON-backed data store (`menu.json`) for quick local development
+- Unit testing with `pytest` and CI using GitHub Actions
 
-User stories
+---
 
-Modular functions
+## Quick Start (run locally)
+1. Clone repository:
+```bash
+git clone https://github.com/joanita-cygnusX-1/coffee_app.git
+cd coffee_app
 
-Clean commits on GitHub
 
-🧠 Features (Planned / Work in Progress)
+Project Structure
+coffee_app/
+├─ coffee_app.py    # CLI entrypoint (uses modules)
+├─ cart.py          # Cart class and methods
+├─ menu.py          # menu load/display/find helper functions
+├─ menu.json        # sample data
+├─ coffee_pseudocode.txt
+├─ USER_STORIES.md
+├─ DESIGN.md
+├─ CHANGELOG.md
+├─ README.md
+└─ LICENSE
 
-Load and display menu
+Documentation
 
-Accept user orders
+Design: DESIGN.md — architecture, flow, data structures, and future scaling notes.
 
-Add items to cart
+User stories: USER_STORIES.md — acceptance criteria used to guide development.
 
-View and edit cart
+Pseudocode: coffee_pseudocode.txt — developer planning and logic.
 
-Delete items
+Changelog: CHANGELOG.md — project history & version notes.
 
-Calculate bill
+CI / Tests
 
-Checkout
+This repo uses GitHub Actions to run pytest on every push (see .github/workflows/ci.yml).
+Add tests under tests/ (e.g., tests/test_cart.py) and they will be executed automatically.
 
-(Optional) Receipt printing
+Future Enhancements
 
-🧪 User Stories
+Convert CLI to FastAPI backend (REST endpoints)
 
-Below is a simplified list.
-As this project grows, I plan to move these to a separate file named USER_STORIES.md for better organization.
+Persist data in SQLite/Postgres and add migrations
 
-As a customer, I want to see the name of the restaurant so I know where I’m ordering from.
+Add authentication & sessions
 
-As a user, I want to view the menu so I can select items.
+Add PDF/email receipts and a demo video/screenshots
 
-As a user, I want to choose items and specify quantities.
+Add GitHub Actions CI badge after first successful run
 
-As a customer, I want to view and manage my cart (edit, delete).
+Author
 
-As a user, I want to checkout securely and see my total.
+Joanita Nyashanu — joanita-cygnusX-1
+Copyright (c) 2025 Joanita Nyashanu
 
-As a customer, I want the option to print or skip the receipt.
 
-🔧 How to Run the App
-python coffee_app.py
+---
 
-🗂️ Pseudocode
+## 2) **CHANGELOG.md** (copy & paste)
+```markdown
+# Changelog
 
-The pseudocode for this project is stored in a separate file called:
+All notable changes to this project will be documented in this file.
 
-coffee_pseudocode.txt
+## [Unreleased]
+- Add modular code: `menu.py`, `cart.py`, `coffee_app.py`
+- Add `DESIGN.md`, `USER_STORIES.md`, `CHANGELOG.md`
+- Add basic GitHub Actions CI for pytest
 
-🚀 Future Enhancements
-
-Add separate file for user stories (USER_STORIES.md)
-
-Add proper error handling
-
-Add dynamic menu loading from a JSON file
-
-Add a database for persistent orders
-
-Add receipt generation as a PDF
-
-Add unit tests
-
-Expand to a GUI (Tkinter or React + API)
-
-Add an API backend version
-
-📄 License
-
-MIT License (optional for now)
+## [2025-11-20] - Initial commit
+- Project created with pseudocode, README, and menu sample

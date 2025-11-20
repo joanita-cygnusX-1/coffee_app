@@ -16,3 +16,13 @@ git status → no uncommitted changes
 git add + git commit -m "..." for any changes
 
 git push → confirm up to date
+
+
+TODOs 20 Nov
+menu.py — menu loading / display / lookup
+
+cart.py — Cart class with add/remove/update/total/summary
+
+coffee_app.py — main CLI that uses the modules
+
+next time after changes. type this one line to stage and commit and push git add -A && git commit -m "update" && git push
