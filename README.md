@@ -1,6 +1,6 @@
 # ☕ Coffee App
 
-
+![CI](https://github.com/joanita-cygnusX-1/coffee_app/actions/workflows/ci.yml/badge.svg)
 
 A simple Python CLI coffee-ordering app used to learn backend design patterns, modular code organization, testing, and CI.
 
