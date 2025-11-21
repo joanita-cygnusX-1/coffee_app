@@ -1,4 +1,4 @@
-# tests/test_cart.py
+import pytest
 from cart import Cart
 
 def test_add_and_total():
@@ -7,7 +7,6 @@ def test_add_and_total():
         {"id": "2", "name": "Latte", "price": 3.5},
     ]
     c = Cart()
-    c.add("1", 2)   # 2 * 2.5 = 5.0
-    c.add("2", 1)   # 1 * 3.5 = 3.5
+    c.add("1", 2)
+    c.add("2", 1)
     assert c.total(menu) == pytest.approx(8.5)
-
