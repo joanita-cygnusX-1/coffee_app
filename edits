@@ -28,4 +28,4 @@ coffee_app.py — main CLI that uses the modules
 next time after changes. type this one line to stage and commit and push git add -A && git commit -m "update" && git push
 
 
-am I adding project structure, documentation, ci /tests, future enhancements, author, to Readme
+PYTHONPATH=. python3 -m pytest -q  to run tests in terminal
