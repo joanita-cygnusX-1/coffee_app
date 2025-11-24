@@ -3,6 +3,11 @@
 from uuid import uuid4
 from menu import load_menu, display_menu, find_item
 from cart import Cart
+import os
+from datetime import datetime
+
+RECEIPT_DIR = "receipts"
+os.makedirs(RECEIPT_DIR, exist_ok=True) 
 
 def initialize_app():
     session_id = str(uuid4())[:8]
@@ -18,6 +23,40 @@ def view_cart(cart: Cart, menu):
     print("\n--- Your Cart ---")
     print(cart.summary(menu))
     print("-----------------")
+
+def format_currency(value: float) -> str:
+    return f"AED {value:.2f}"
+
+def generate_receipt_text(cart, menu, session_id):
+    """
+    Returns a nicely formatted receipt string.
+    """
+    lines = []
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    lines.append("COFFEE APP RECEIPT")
+    lines.append(f"Session: {session_id}")
+    lines.append(f"Date: {now}")
+    lines.append("-" * 28)
+    total = 0.0
+    price_map = {str(m["id"]): float(m["price"]) for m in menu}
+    name_map = {str(m["id"]): m.get("name", str(m["id"])) for m in menu}
+    for item_id, qty in cart.items.items():
+        price = price_map.get(str(item_id), 0.0)
+        subtotal = price * qty
+        total += subtotal
+        lines.append(f"{name_map.get(str(item_id),item_id)} x {qty} — {format_currency(subtotal)}")
+    lines.append("-" * 28)
+    lines.append(f"TOTAL: {format_currency(total)}")
+    lines.append("-" * 28)
+    lines.append("Payment: Simulated")
+    return "\n".join(lines), total
+
+def save_receipt_text(text, prefix="receipt"):
+    ts = datetime.now().strftime("%Y%m%d%H%M%S")
+    filename = os.path.join(RECEIPT_DIR, f"{prefix}_{ts}.txt")
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(text)
+    return filename
 
 def main():
     session_id, menu = initialize_app()
@@ -68,8 +107,18 @@ def main():
             if not cart.items:
                 print("Cannot checkout: cart is empty.")
                 continue
+            receipt_text, total = generate_receipt_text(cart, menu, session_id)
             print("\n--- Checkout ---")
-            print(cart.summary(menu))
+            print(receipt_text)
+            # Ask how to handle receipt
+            print("\nOptions: (p)rint receipt (save)  (g)o green (no receipt)  (q)uit and keep session")
+            action = input("Choose option: ").strip().lower()
+            if action in ('p', 'print', 's', 'save'):
+                path = save_receipt_text(receipt_text)
+                print(f"Receipt saved to {path}")
+            else:
+                print("No receipt saved (Go green).")
+            # simulate payment
             input("Press Enter to simulate payment...")
             print("Payment simulated. Order placed.")
             cart.clear()
